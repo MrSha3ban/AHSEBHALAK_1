@@ -2,67 +2,60 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>نظام AHSEBHALAK أحسبهالك -</title>
+    <title>نظام AHSEBHALAK للهندسة الصناعية - الإصدار الشامل</title>
     <style>
         :root {
             --primary: #2c3e50; --accent: #c0392b; --success: #27ae60; --gold: #f39c12; --blue: #2980b9; --bg: #f0f2f5;
         }
-        body { font-family: 'Segoe UI', Tahoma, sans-serif; background: var(--bg); margin: 0; padding: 10px; color: #2f3542; }
-        .wrapper { max-width: 1600px; margin: auto; background: white; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.15); overflow: hidden; border: 1px solid #ddd; }
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; background: var(--bg); margin: 0; padding: 10px; color: #2f3542; line-height: 1.4; }
+        .wrapper { max-width: 1750px; margin: auto; background: white; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.15); overflow: hidden; border: 1px solid #ddd; }
         
-        .header { background: var(--primary); color: white; padding: 25px; text-align: center; border-bottom: 5px solid var(--gold); }
-        .header h1 { margin: 0; font-size: 28px; }
-        .header .model-name-container { margin-top: 15px; font-size: 18px; }
-        .header .model-name-container input { background: rgba(255,255,255,0.1); border: 1px dashed #fff; color: white; width: 300px; padding: 8px; font-size: 20px; text-align: center; border-radius: 5px; }
+        /* Header */
+        .header { background: var(--primary); color: white; padding: 20px; text-align: center; border-bottom: 5px solid var(--gold); }
+        .header h1 { margin: 0; font-size: 26px; }
+        .header input { background: rgba(255,255,255,0.1); border: 1px dashed #fff; color: white; width: 350px; padding: 8px; font-size: 18px; text-align: center; border-radius: 5px; margin-top: 10px; }
 
-        .summary-bar { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; padding: 20px; background: #f8f9fa; border-bottom: 2px solid #eee; }
-        .stat-card { background: white; padding: 12px; border-radius: 8px; border-top: 4px solid var(--blue); box-shadow: 0 2px 5px rgba(0,0,0,0.05); text-align: center; }
-        .stat-card h4 { margin: 0 0 10px; color: #666; font-size: 11px; }
-        .stat-card .val { font-size: 20px; font-weight: bold; color: var(--primary); }
+        /* Dashboard */
+        .summary-bar { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; padding: 15px; background: #f8f9fa; border-bottom: 2px solid #eee; }
+        .stat-card { background: white; padding: 10px; border-radius: 8px; border-top: 4px solid var(--blue); box-shadow: 0 2px 5px rgba(0,0,0,0.05); text-align: center; }
+        .stat-card h4 { margin: 0 0 5px; color: #666; font-size: 10px; text-transform: uppercase; }
+        .stat-card .val { font-size: 17px; font-weight: bold; color: var(--primary); }
+        .stat-card.highlight { border-top-color: var(--accent); }
 
-        .table-section { padding: 15px; overflow-x: auto; }
-        table { width: 100%; border-collapse: collapse; background: white; font-size: 12px; table-layout: fixed; }
-        th { background: var(--primary); color: white; padding: 12px; border: 1px solid #34495e; font-size: 11px; }
-        td { border: 1px solid #eee; padding: 8px; text-align: center; vertical-align: middle; }
+        /* Table */
+        .table-section { padding: 10px; overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; background: white; font-size: 11px; table-layout: fixed; }
+        th { background: var(--primary); color: white; padding: 10px; border: 1px solid #34495e; font-size: 10px; }
+        td { border: 1px solid #eee; padding: 4px; text-align: center; }
         
-        input, select { width: 95%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; text-align: center; font-size: 12px; font-weight: bold; }
-        input:focus { border-color: var(--blue); outline: none; background: #fffde7; }
+        input, select { width: 92%; padding: 5px; border: 1px solid #ccc; border-radius: 4px; text-align: center; font-size: 11px; font-weight: bold; }
+        .tech-input { background: #f1f9ff; }
+        .auto-alloc { background: #e8f5e9; border-color: #2e7d32; color: #1b5e20; }
+        .manual-alloc { background: #fffde7 !important; border-color: #fbc02d !important; }
+
+        .timer-cell { background: #fff5f5; border-radius: 5px; padding: 4px; border: 1px solid #fab1a0; }
+        .time-display { font-family: monospace; font-size: 14px; font-weight: bold; color: var(--accent); display: block; }
         
-        .tech-input { background: #f1f9ff; border: 1px solid #a5d8ff; }
-        .timer-cell { background: #fff5f5; border-radius: 5px; padding: 5px; border: 1px solid #fab1a0; }
-        .time-display { font-family: monospace; font-size: 16px; font-weight: bold; color: var(--accent); display: block; }
-        
-        .controls-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; padding: 20px; background: #fdfdfd; border-top: 2px solid #eee; }
-        .control-group { background: #fff; padding: 15px; border-radius: 8px; border: 1px solid #eee; }
+        .bottleneck { background: #ff7675 !important; color: white; font-weight: bold; padding: 3px; border-radius: 3px; }
+        .balanced { background: #55efc4 !important; font-weight: bold; padding: 3px; border-radius: 3px; }
+
+        /* Controls */
+        .controls-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 15px; padding: 15px; background: #fdfdfd; border-top: 2px solid #eee; }
+        .control-group { background: #fff; padding: 12px; border-radius: 8px; border: 1px solid #eee; }
         .group-title { color: var(--accent); font-weight: bold; margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
-        .inputs-flex { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-        .input-box { margin-bottom: 10px; }
-        .input-box label { display: block; font-size: 11px; margin-bottom: 4px; font-weight: bold; color: #555; }
+        .inputs-flex { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+        .input-box label { display: block; font-size: 10px; margin-bottom: 3px; font-weight: bold; }
 
-        .btn { padding: 12px; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; color: white; transition: 0.3s; }
-        .btn-add { background: var(--blue); margin: 10px 15px; }
-        .btn-print { background: var(--primary); font-size: 16px; width: 100%; margin-top: 10px; }
-        .timer-btn { padding: 5px 10px; font-size: 11px; margin-top: 4px; cursor: pointer; border-radius: 4px; border: 1px solid #ccc; }
+        .btn { padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; }
+        .btn-add { background: var(--blue); color: white; margin: 10px; }
+        .btn-print { background: var(--primary); color: white; width: 100%; margin-top: 10px; font-size: 16px; }
 
-        .footer { background: var(--primary); color: white; padding: 30px; text-align: center; margin-top: 20px; }
-        .contact-grid { display: flex; justify-content: center; gap: 30px; margin-top: 15px; font-size: 14px; flex-wrap: wrap; }
-        .contact-grid a { color: var(--gold); text-decoration: none; font-weight: bold; }
-
-        .signature-section { display: none; margin-top: 40px; padding: 20px; }
-        .sig-box { text-align: center; border: 1px solid #ccc; padding: 20px; border-radius: 5px; font-weight: bold; }
+        .footer-info { background: var(--primary); color: white; padding: 20px; text-align: center; margin-top: 20px; font-size: 12px; }
 
         @media print { 
-            body { background: white; padding: 0; }
-            .controls-grid, .btn-add, .timer-btn, .timer-cell button, .header p { display: none !important; }
-            .wrapper { box-shadow: none; border: none; max-width: 100%; }
-            th { background: #f2f2f2 !important; color: black !important; border: 1px solid #000 !important; }
-            td { border: 1px solid #000 !important; }
-            input, select { border: none !important; background: none !important; appearance: none; -webkit-appearance: none; }
-            .header .model-name-container input { border: none !important; color: black !important; font-size: 24px; text-decoration: underline; }
-            .signature-section { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-            .header { background: #fff !important; color: #000 !important; border-bottom: 2px solid #000; }
-            .footer { background: #fff !important; color: #000 !important; border-top: 1px solid #000; }
-            .contact-grid a { color: #000 !important; }
+            .controls-grid, .btn-add, .timer-btn, .timer-cell button { display: none !important; }
+            .signature-section { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 50px; text-align: center; }
+            .sig-box { border-top: 1px solid #000; padding-top: 10px; margin: 0 20px; font-weight: bold; }
         }
     </style>
 </head>
@@ -70,70 +63,50 @@
 
 <div class="wrapper">
     <div class="header">
-        <h1>نظام AHSEBHALAK  أحسبهالك</h1>
-        <div class="model-name-container">
-            اسم الموديل: <input type="text" placeholder="أدخل اسم الموديل">
-        </div>
-        <p>التحليل الهندسي الكامل: وقت (SMV) | كفاءة تشغيل | استهلاك خيوط | تكلفة CM</p>
+        <h1>AHSEBHALAK Industrial Engineering Intelligence</h1>
+        <input type="text" placeholder="اسم الموديل / العميل">
     </div>
 
     <div class="summary-bar">
         <div class="stat-card"><h4>إجمالي SMV</h4><div class="val" id="total-smv">0.00</div></div>
-        <div class="stat-card"><h4>إنتاجية الخط/ساعة</h4><div class="val" id="target-hr">0</div></div>
-        <div class="stat-card" style="border-top-color: var(--gold);"><h4>عدد العمال</h4><div class="val" id="worker-display">1</div></div>
-        <div class="stat-card" style="border-top-color: var(--success);"><h4>وزن الخيوط (جم)</h4><div class="val" id="total-weight">0</div></div>
-        <div class="stat-card" style="border-top-color: var(--success);"><h4>بكرات الخيط</h4><div class="val" id="total-cones">0</div></div>
-        <div class="stat-card" style="border-top-color: var(--accent);"><h4>متوسط الكفاءة</h4><div class="val" id="total-eff">0%</div></div>
-        <div class="stat-card" style="border-top-color: var(--gold);"><h4>تكلفة CM للقطعة</h4><div class="val" id="cm-unit-cost">0.00</div></div>
-        <div class="stat-card" style="border-top-color: var(--primary);"><h4>إجمالي تكاليف الطلبية</h4><div class="val" id="total-order-cost">0.00</div></div>
+        <div class="stat-card"><h4>الهدف/ساعة</h4><div class="val" id="target-display">0</div></div>
+        <div class="stat-card"><h4>عدد العمال</h4><div class="val" id="worker-display">0</div></div>
+        <div class="stat-card highlight"><h4>LBE %</h4><div class="val" id="lbe-val">0%</div></div>
+        <div class="stat-card"><h4>خيط (جم)</h4><div class="val" id="total-weight">0</div></div>
+        <div class="stat-card"><h4>بكرات</h4><div class="val" id="total-cones">0</div></div>
+        <div class="stat-card"><h4>CM/قطعة</h4><div class="val" id="cm-unit-cost">0.00</div></div>
+        <div class="stat-card highlight"><h4>إجمالي التكلفة</h4><div class="val" id="total-order-cost">0.00</div></div>
     </div>
 
     <div class="table-section">
         <table id="mainTable">
             <thead>
                 <tr>
-                    <th width="12%">المرحلة</th>
-                    <th width="14%">نوع الماكينة</th>
-                    <th width="6%">طول (سم)</th>
-                    <th width="7%">RPM</th>
-                    <th width="5%">SPI</th>
-                    <th width="18%">الكرونومتر (10 قطع)</th>
-                    <th width="8%">نظري (ث)</th>
-                    <th width="7%">واقعي (ث)</th>
-                    <th width="7%">كفاءة %</th>
-                    <th width="8%">خيط (م)</th>
-                    <th width="8%">بكرات</th>
+                    <th width="8%">المرحلة</th>
+                    <th width="12%">الماكينة (الغرزة)</th>
+                    <th width="4%">طول(سم)</th>
+                    <th width="4%">RPM</th>
+                    <th width="4%">SPI</th>
+                    <th width="12%">كرونومتر (10 قطع)</th>
+                    <th width="5%">نظري(ث)</th>
+                    <th width="5%">واقعي(ث)</th>
+                    <th width="5%">كفاءة%</th>
+                    <th width="5%">SMV</th>
+                    <th width="7%">تخصيص عمال</th>
+                    <th width="5%">الطاقة</th>
+                    <th width="7%">الحالة</th>
+                    <th width="7%">خيط(م)</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="tableBody">
                 <tr data-id="0">
-                    <td><input type="text" placeholder="اسم المرحلة"></td>
+                    <td><input type="text" placeholder="مرحلة 1"></td>
                     <td>
                         <select class="stitch-type" onchange="runCalculations()">
-                            <optgroup label="ماكينات السنجر">
-                                <option value="2.8">سنجر إبرة واحدة (301)</option>
-                                <option value="5.6">سنجر إبرتين (Double)</option>
-                                <option value="3.5">زجزاج (Zig-Zag)</option>
-                            </optgroup>
-                            <optgroup label="ماكينات الأوفرلوك">
-                                <option value="14">أوفر 3 فتلة</option>
-                                <option value="18" selected>أوفر 4 فتلة</option>
-                                <option value="22">أوفر 5 فتلة (أمان)</option>
-                                <option value="25">أوفر 6 فتلة</option>
-                            </optgroup>
-                            <optgroup label="ماكينات الأورليه">
-                                <option value="16">أورليه إبرتين (Cover)</option>
-                                <option value="23">أورليه 3 إبر</option>
-                                <option value="28">تغطية علوية وسفلية</option>
-                            </optgroup>
-                            <optgroup label="ماكينات متخصصة">
-                                <option value="5.5">سلسلة (Chainstitch)</option>
-                                <option value="45">كين لوي (4 إبر)</option>
-                                <option value="90">ملايتي (12 إبرة)</option>
-                                <option value="0.8">فاتورة (Bar-tack)</option>
-                                <option value="1.5">عراوي (Buttonhole)</option>
-                                <option value="0.6">زراير (Buttons)</option>
-                            </optgroup>
+                            <optgroup label="Lockstitch"><option value="2.8">سنجر (301)</option><option value="5.6">إبرتين</option></optgroup>
+                            <optgroup label="Overlock"><option value="14">3 فتلة</option><option value="18" selected>4 فتلة</option><option value="22">5 فتلة</option></optgroup>
+                            <optgroup label="Coverstitch"><option value="16">أورليه 2 إبرة</option><option value="28">أورليه تغطية</option></optgroup>
+                            <optgroup label="Special"><option value="0.8">فاتورة</option><option value="1.5">عراوي</option><option value="1.2">زراير</option></optgroup>
                         </select>
                     </td>
                     <td><input type="number" class="row-len tech-input" value="0" oninput="runCalculations()"></td>
@@ -142,101 +115,88 @@
                     <td>
                         <div class="timer-cell">
                             <span class="time-display" id="watch-0">0.00</span>
-                            <button class="timer-btn" onclick="toggleTimer(0, this)">ابدأ القياس</button>
+                            <button class="timer-btn" onclick="toggleTimer(0, this)">ابدأ</button>
                             <input type="number" class="batch-time" id="val-0" oninput="runCalculations()">
                         </div>
                     </td>
-                    <td id="theory-0">0.00</td>
-                    <td id="avg-0">0.00</td>
-                    <td id="eff-0">0%</td>
-                    <td id="thread-m-0">0</td>
-                    <td id="cones-0">0</td>
+                    <td id="theory-0">0.00</td><td id="avg-0">0.00</td><td id="eff-0">0%</td><td id="smv-0">0.00</td>
+                    <td><input type="number" class="alloc-staff auto-alloc" value="0" step="0.1" oninput="markManual(this); runCalculations()"></td>
+                    <td id="cap-0">0</td><td id="status-0">-</td><td id="thread-m-0">0</td>
                 </tr>
             </tbody>
         </table>
     </div>
     
-    <button class="btn btn-add" onclick="addRow()">+ إضافة مرحلة إنتاجية جديدة</button>
+    <button class="btn btn-add" onclick="addRow()">+ إضافة مرحلة</button>
 
     <div class="controls-grid">
         <div class="control-group">
-            <div class="group-title">إعدادات الوقت والإنتاجية</div>
+            <div class="group-title">⚙️ موازنة الخط والأداء</div>
             <div class="inputs-flex">
-                <div class="input-box"><label>الكمية المطلوبة (قطعة):</label><input type="number" id="order-qty" value="1000" oninput="runCalculations()"></div>
-                <div class="input-box"><label>سماحات الوقت (Allowance) %:</label><input type="number" id="allowance-pct" value="15" oninput="runCalculations()"></div>
-                <div class="input-box">
-                    <label>عدد العمال (يدوي):</label>
-                    <input type="number" id="operator-manual" placeholder="تلقائي حسب المراحل" oninput="runCalculations()">
-                </div>
-                <div class="input-box"><label>ساعات العمل اليومية:</label><input type="number" id="work-hours" value="8" oninput="runCalculations()"></div>
+                <div class="input-box"><label>الهدف المطلوب (قطعة/ساعة):</label><input type="number" id="hourly-target" value="60" oninput="runCalculations()"></div>
+                <div class="input-box"><label>سماحات الوقت %:</label><input type="number" id="allowance-pct" value="15" oninput="runCalculations()"></div>
+                <div class="input-box"><label>كفاءة الخط %:</label><input type="number" id="line-eff" value="80" oninput="runCalculations()"></div>
+                <div class="input-box"><label>ساعات العمل:</label><input type="number" id="work-hours" value="8" oninput="runCalculations()"></div>
             </div>
         </div>
 
         <div class="control-group">
-            <div class="group-title">إعدادات تكاليف الـ CM</div>
+            <div class="group-title">💰 التكاليف المالية (CM)</div>
             <div class="inputs-flex">
-                <div class="input-box"><label>يومية العامل (متوسط):</label><input type="number" id="daily-wage" value="250" oninput="runCalculations()"></div>
-                <div class="input-box"><label>تكاليف إضافية للقطعة (تعبئة):</label><input type="number" id="extra-cost" value="0" oninput="runCalculations()"></div>
+                <div class="input-box"><label>كمية الطلبية:</label><input type="number" id="order-qty" value="1000" oninput="runCalculations()"></div>
+                <div class="input-box"><label>يومية العامل:</label><input type="number" id="daily-wage" value="250" oninput="runCalculations()"></div>
+                <div class="input-box"><label>سعر بكرة الخيط:</label><input type="number" id="cone-price" value="0" oninput="runCalculations()"></div>
+                <div class="input-box"><label>مصاريف إضافية/قطعة:</label><input type="number" id="extra-cost" value="0" oninput="runCalculations()"></div>
             </div>
-            <button class="btn btn-print" onclick="window.print()">🖨 طباعة التقرير الفني النهائي</button>
+            <button class="btn btn-print" onclick="window.print()">🖨 طباعة التقرير الفني</button>
         </div>
 
         <div class="control-group">
-            <div class="group-title">إعدادات الخيوط</div>
+            <div class="group-title">🧵 فنيات الخيوط</div>
             <div class="inputs-flex">
                 <div class="input-box"><label>طول البكرة (Yard):</label><input type="number" id="cone-yard" value="5000" oninput="runCalculations()"></div>
-                <div class="input-box"><label>سعر البكرة الواحدة:</label><input type="number" id="cone-price" value="0" oninput="runCalculations()"></div>
                 <div class="input-box"><label>نمرة الخيط (Tex):</label><input type="number" id="thread-tex" value="27" oninput="runCalculations()"></div>
                 <div class="input-box"><label>هالك الخيط %:</label><input type="number" id="waste-thread" value="15" oninput="runCalculations()"></div>
+                <div class="input-box"><label>عدد العمال (يدوي):</label><input type="number" id="manual-workers-total" placeholder="تلقائي" oninput="runCalculations()"></div>
             </div>
         </div>
     </div>
 
     <div class="signature-section">
-        <div class="sig-box">توقيع المكتب الفني</div>
-        <div class="sig-box">توقيع مدير الجودة</div>
-        <div class="sig-box">إعتماد مدير الإنتاج</div>
+        <div class="sig-box">مدير المكتب الفني</div><div class="sig-box">تأكيد الجودة</div><div class="sig-box">اعتماد الإنتاج</div>
     </div>
 
-    <footer class="footer">
-        <div>نظام الإدارة الهندسية المتكامل - AHSEBHALAK</div>
-        <div class="contact-grid">
-            <span>📞 واتساب: <a href="https://wa.me/201066800808" target="_blank">01066800808</a></span>
-            <span>📧 إيميل: <a href="mailto:M.sha3ban@hotmail.com">M.sha3ban@hotmail.com</a></span>
-            <span>🔗 لينكد إن: <a href="https://www.linkedin.com/in/mr-sha3ban/" target="_blank">LinkedIn Profile</a></span>
-        </div>
-        <div style="margin-top: 15px; font-size: 11px; opacity: 0.7;">حقوق الطبع محفوظة © 2026</div>
-    </footer>
+    <div class="footer-info">
+        نظام AHSEBHALAK الهندسي المتكامل | واتساب: 01066800808 | إيميل: M.sha3ban@hotmail.com
+    </div>
 </div>
 
 <script>
     let timers = {}; let intervals = {};
+    let manualAllocations = new Set(); // لتتبع المراحل التي عدلها المستخدم يدوياً
+
+    function markManual(input) {
+        const rowId = input.closest('tr').getAttribute('data-id');
+        manualAllocations.add(rowId);
+        input.classList.remove('auto-alloc');
+        input.classList.add('manual-alloc');
+    }
 
     function addRow() {
-        const tbody = document.querySelector('#mainTable tbody');
+        const tbody = document.getElementById('tableBody');
         const id = tbody.rows.length;
-        const firstRowSelect = document.querySelector('.stitch-type').innerHTML;
-
+        const selectHTML = document.querySelector('.stitch-type').innerHTML;
         const row = `<tr data-id="${id}">
-            <td><input type="text" placeholder="مرحلة ${id + 1}"></td>
-            <td><select class="stitch-type" onchange="runCalculations()">${firstRowSelect}</select></td>
+            <td><input type="text" placeholder="مرحلة ${id+1}"></td>
+            <td><select class="stitch-type" onchange="runCalculations()">${selectHTML}</select></td>
             <td><input type="number" class="row-len tech-input" value="0" oninput="runCalculations()"></td>
             <td><input type="number" class="row-speed tech-input" value="3500" oninput="runCalculations()"></td>
             <td><input type="number" class="row-spi tech-input" value="4" oninput="runCalculations()"></td>
-            <td>
-                <div class="timer-cell">
-                    <span class="time-display" id="watch-${id}">0.00</span>
-                    <button class="timer-btn" onclick="toggleTimer(${id}, this)">ابدأ</button>
-                    <input type="number" class="batch-time" id="val-${id}" oninput="runCalculations()">
-                </div>
-            </td>
-            <td id="theory-${id}">0.00</td>
-            <td id="avg-${id}">0.00</td>
-            <td id="eff-${id}">0%</td>
-            <td id="thread-m-${id}">0</td>
-            <td id="cones-${id}">0</td>
+            <td><div class="timer-cell"><span class="time-display" id="watch-${id}">0.00</span><button class="timer-btn" onclick="toggleTimer(${id}, this)">ابدأ</button><input type="number" class="batch-time" id="val-${id}" oninput="runCalculations()"></div></td>
+            <td id="theory-${id}">0.00</td><td id="avg-${id}">0.00</td><td id="eff-${id}">0%</td><td id="smv-${id}">0.00</td>
+            <td><input type="number" class="alloc-staff auto-alloc" value="0" step="0.1" oninput="markManual(this); runCalculations()"></td>
+            <td id="cap-${id}">0</td><td id="status-${id}">-</td><td id="thread-m-${id}">0</td>
         </tr>`;
-        
         tbody.insertAdjacentHTML('beforeend', row);
         runCalculations();
     }
@@ -244,96 +204,99 @@
     function toggleTimer(id, btn) {
         if (!intervals[id]) {
             let start = Date.now() - (timers[id] || 0);
-            btn.innerText = "توقف"; btn.style.background = "#c0392b"; btn.style.color = "white";
+            btn.innerText = "توقف"; btn.style.background = "#c0392b"; btn.style.color = "#fff";
             intervals[id] = setInterval(() => {
                 timers[id] = Date.now() - start;
                 document.getElementById(`watch-${id}`).innerText = (timers[id]/1000).toFixed(2);
             }, 100);
         } else {
             clearInterval(intervals[id]); intervals[id] = null;
-            btn.innerText = "إعادة"; btn.style.background = "#eee"; btn.style.color = "black";
+            btn.innerText = "إعادة"; btn.style.background = "#eee"; btn.style.color = "#000";
             document.getElementById(`val-${id}`).value = (timers[id]/1000).toFixed(2);
             runCalculations();
         }
     }
 
     function runCalculations() {
-        const rows = document.querySelectorAll('#mainTable tbody tr');
-        const orderQty = parseFloat(document.getElementById('order-qty').value) || 0;
+        const rows = document.querySelectorAll('#tableBody tr');
+        const hTarget = parseFloat(document.getElementById('hourly-target').value) || 1;
+        const lineEff = (parseFloat(document.getElementById('line-eff').value) || 100) / 100;
         const allowance = (parseFloat(document.getElementById('allowance-pct').value) / 100) + 1;
-        const wasteThread = (parseFloat(document.getElementById('waste-thread').value) / 100) + 1;
-        const coneMeter = (parseFloat(document.getElementById('cone-yard').value) || 1) * 0.9144;
-        const conePrice = parseFloat(document.getElementById('cone-price').value) || 0;
-        const tex = parseFloat(document.getElementById('thread-tex').value) || 1;
-        
-        // حساب العمال: إما القيمة اليدوية أو عدد صفوف الجدول
-        const manualWorkers = parseFloat(document.getElementById('operator-manual').value);
-        const actualWorkers = (isNaN(manualWorkers) || manualWorkers <= 0) ? rows.length : manualWorkers;
-        document.getElementById('worker-display').innerText = actualWorkers;
-
+        const orderQty = parseFloat(document.getElementById('order-qty').value) || 0;
         const dailyWage = parseFloat(document.getElementById('daily-wage').value) || 0;
         const workHours = parseFloat(document.getElementById('work-hours').value) || 8;
-        const extraCost = parseFloat(document.getElementById('extra-cost').value) || 0;
+        const coneMeter = (parseFloat(document.getElementById('cone-yard').value) || 1) * 0.9144;
+        const tex = parseFloat(document.getElementById('thread-tex').value) || 1;
+        const wasteT = (parseFloat(document.getElementById('waste-thread').value) / 100) + 1;
 
-        let totalSMV = 0; 
-        let totalCones = 0; 
-        let totalEff = 0; 
-        let activeOps = 0; 
-        let sumMeters = 0;
+        let totalSMV = 0, totalAlloc = 0, sumMeters = 0, maxPitch = 0;
 
-        rows.forEach((row, i) => {
-            const stitchFactor = parseFloat(row.querySelector('.stitch-type').value);
+        rows.forEach((row) => {
+            const i = row.getAttribute('data-id');
             const L = parseFloat(row.querySelector('.row-len').value) || 0;
             const RPM = parseFloat(row.querySelector('.row-speed').value) || 1;
             const SPI = parseFloat(row.querySelector('.row-spi').value) || 1;
             const batchVal = parseFloat(document.getElementById(`val-${i}`).value) || 0;
+            const allocInput = row.querySelector('.alloc-staff');
+            const stitchF = parseFloat(row.querySelector('.stitch-type').value);
 
-            // حساب الوقت النظري
+            // 1. الزمن النظري
             const theory = L > 0 ? ((L * SPI) / (RPM / 60)) + 3 : 0;
             document.getElementById(`theory-${i}`).innerText = theory.toFixed(2);
 
-            if(batchVal > 0) {
-                const actual = batchVal / 10;
-                document.getElementById(`avg-${i}`).innerText = actual.toFixed(2);
-                const eff = (theory / actual) * 100;
-                document.getElementById(`eff-${i}`).innerText = eff.toFixed(1) + "%";
-                totalEff += eff; 
-                activeOps++; 
-                totalSMV += actual;
-            }
+            if (batchVal > 0) {
+                const actualSec = batchVal / 10;
+                const smv = (actualSec / 60) * allowance;
+                const eff = (theory / actualSec) * 100;
+                
+                document.getElementById(`avg-${i}`).innerText = actualSec.toFixed(2);
+                document.getElementById(`eff-${i}`).innerText = isFinite(eff) ? eff.toFixed(1) + "%" : "0%";
+                document.getElementById(`smv-${i}`).innerText = smv.toFixed(2);
 
-            // حساب الخيوط
-            const threadMeters = (L / 100) * stitchFactor * orderQty * wasteThread;
-            const cones = threadMeters / coneMeter;
-            document.getElementById(`thread-m-${i}`).innerText = Math.round(threadMeters).toLocaleString();
-            document.getElementById(`cones-${i}`).innerText = Math.ceil(cones);
-            sumMeters += threadMeters; 
-            totalCones += cones;
+                totalSMV += smv;
+
+                // التوزيع الذكي (Smart Balancing)
+                if (!manualAllocations.has(i)) {
+                    let smartVal = (hTarget * smv) / (60 * lineEff);
+                    allocInput.value = (Math.ceil(smartVal * 10) / 10).toFixed(1);
+                }
+
+                const currentAlloc = parseFloat(allocInput.value) || 0;
+                totalAlloc += currentAlloc;
+
+                const pitch = smv / currentAlloc;
+                if (pitch > maxPitch) maxPitch = pitch;
+
+                const cap = ((60 / smv) * lineEff) * currentAlloc;
+                document.getElementById(`cap-${i}`).innerText = Math.round(cap);
+                
+                const status = document.getElementById(`status-${i}`);
+                if (cap < hTarget * 0.98) { status.innerText = "عنق زجاجة"; status.className = "bottleneck"; }
+                else { status.innerText = "متوازن"; status.className = "balanced"; }
+            } else {
+                totalAlloc += parseFloat(allocInput.value) || 0;
+            }
+            
+            const m = (L / 100) * stitchF * orderQty * wasteT;
+            sumMeters += m;
+            document.getElementById(`thread-m-${i}`).innerText = Math.round(m).toLocaleString();
         });
 
-        // النتائج النهائية
-        const finalSMV = (totalSMV / 60) * allowance;
-        const finalWeight = (sumMeters * tex) / 1000;
-        
-        // حساب الـ CM
-        // تكلفة الدقيقة للخط بالكامل = (يومية العامل * عدد العمال) / (ساعات العمل * 60 دقيقة)
-        const costPerMinuteLine = (dailyWage * actualWorkers) / (workHours * 60);
-        const cmCostPerUnit = finalSMV * costPerMinuteLine;
-        
-        // إجمالي التكاليف (خيوط + عمالة + إضافي)
-        const threadTotalCost = Math.ceil(totalCones) * conePrice;
-        const totalOrderCostValue = (cmCostPerUnit * orderQty) + threadTotalCost + (extraCost * orderQty);
+        const manualTotal = parseFloat(document.getElementById('manual-workers-total').value);
+        const finalWorkers = isNaN(manualTotal) || manualTotal <= 0 ? totalAlloc : manualTotal;
 
-        // تحديث الكروت العلوية
-        document.getElementById('total-smv').innerText = finalSMV.toFixed(2);
-        document.getElementById('target-hr').innerText = finalSMV > 0 ? Math.floor((60 / finalSMV) * actualWorkers) : 0;
-        document.getElementById('total-cones').innerText = Math.ceil(totalCones);
-        document.getElementById('total-weight').innerText = Math.round(finalWeight).toLocaleString();
-        document.getElementById('total-eff').innerText = activeOps > 0 ? (totalEff / activeOps).toFixed(1) + "%" : "0%";
-        document.getElementById('cm-unit-cost').innerText = cmCostPerUnit.toFixed(2);
-        document.getElementById('total-order-cost').innerText = totalOrderCostValue.toLocaleString(undefined, {minimumFractionDigits: 2});
+        const lbe = (totalAlloc > 0 && maxPitch > 0) ? (totalSMV / (totalAlloc * maxPitch)) * 100 : 0;
+        const cmUnit = (dailyWage * finalWorkers) / (workHours * 60) * totalSMV;
+
+        document.getElementById('total-smv').innerText = totalSMV.toFixed(2);
+        document.getElementById('worker-display').innerText = finalWorkers.toFixed(1);
+        document.getElementById('target-display').innerText = hTarget;
+        document.getElementById('lbe-val').innerText = Math.min(lbe, 100).toFixed(1) + "%";
+        document.getElementById('total-weight').innerText = Math.round((sumMeters * tex) / 1000).toLocaleString();
+        document.getElementById('total-cones').innerText = Math.ceil(sumMeters / coneMeter);
+        document.getElementById('cm-unit-cost').innerText = cmUnit.toFixed(2);
+        document.getElementById('total-order-cost').innerText = ((cmUnit * orderQty) + (Math.ceil(sumMeters / coneMeter) * (parseFloat(document.getElementById('cone-price').value) || 0))).toLocaleString();
     }
-
     window.onload = runCalculations;
 </script>
 </body>
